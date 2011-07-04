@@ -1,3 +1,5 @@
+jsinliner = require "../lib/jsinliner"
+
 exports["test some stuff"] = (test) ->
     test.expect 1
     test.ok true, "this assertion should pass"

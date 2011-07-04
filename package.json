@@ -4,7 +4,11 @@
   "version": "0.2.3",
   "author": "Alberto Pose <apose@itba.edu.ar>",
   "repository": {"type": "git", "url": "http://github.com/pose/js-ifa-inliner.git"},
-  "dependencies": {"coffee-script": ">= 1.0.1", "nodeunit": "0.5.1"},
+  "dependencies": {
+    "coffee-script": ">= 1.0.1", 
+    "nodeunit": "0.5.1",
+    "narcissus": ">= 0.0.1"
+    },
   "keywords": ["information flow", "inlining", "inliner", "ifa", "coffeescript"],
   "bin": "./bin/jsinliner",
   "main": "./lib/jsinliner",
