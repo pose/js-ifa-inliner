@@ -11,8 +11,6 @@ exports["jscode"] = (test) ->
         } else {
             x = y;
         }
-
-
     '''
     codeNoTested = '''
     var y = 4;
@@ -31,7 +29,7 @@ exports["jscode"] = (test) ->
         console.log('yeah!');
     }'''
 
-    jsinliner.inline(code)
+    jsinliner.inline code
 
     test.done()
 

@@ -14,11 +14,14 @@ printIf = (node, num) ->
     elsePart: elsePart} = node
     s = spaces num
 
+    console.log "#{s}if ["
     condition = printChild condition, num+1
+    console.log "#{s}] then ["
     thenPart = printChild thenPart, num+1
+    console.log "#{s}] else ["
     elsePart = printChild elsePart, num+1
+    console.log "#{s}]"
 
-    console.log "#{s}if [#{condition}] then [#{thenPart}] else [#{elsePart}]"
 
 spaces = (num) ->
     (' ' for n in [0..num]).join('')
@@ -34,7 +37,6 @@ printNode = (node, num) ->
     
 printAssign = (node, num) ->
     {children: [statements...]} = node
-    console.log num
     printSpaced '==', num
     printChild n, num+1 for n in statements
     
@@ -53,10 +55,11 @@ printChild = (node, num) ->
 print = (node, num) ->
     {children: [children...]} = node
     console.log 'parent'
-    (printChild i, num+1 for i in children)
+    (printChild child, num+1 for child in children)
 
 jsinliner.inline = (code) ->
     {children: [statements...]} = node = narcissus.parser.parse code
-    #console.log node
+    console.log statements[0]
     #print statements[1]
-    print node , 0
+    #print node , 0
+
