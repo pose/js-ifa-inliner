@@ -57,9 +57,50 @@ print = (node, num) ->
     console.log 'parent'
     (printChild child, num+1 for child in children)
 
+transIDENTIFIER = (node) ->
+    if node.initializer #var x=5
+        node.initializer=(trans node.initializer)[0]
+    #else
+    #    1
+    #    #TODO: otros casos
+    [node]
+
+transVAR = (node) ->
+    node.children=myMap trans, node.children
+    [node]
+
+transDEFAULT = (node) ->
+    [node]
+
+transFUNCTION = (node) ->
+    [node]
+
+transASSIGN = (node) ->
+    [node]
+
+transSCRIPT = (node) ->
+    node.children=myMap trans, node.children
+    [node]
+
+myMap = (func,list) ->
+    newlist=[]
+    for child in list
+        do (child) -> newlist=newlist.concat(func child)
+    newlist
+
+trans = (node) ->
+    console.log node.type+' '+tokens[node.type]
+    switch tokens[node.type]
+        when 'SCRIPT' then transSCRIPT node
+        when 'var' then transVAR node #var
+        when 'IDENTIFIER' then transIDENTIFIER node #IDENTIFIER
+        #when 'function' then transFUNCTION node #function
+        #when '=' then transASSIGN node #assign
+        #else transDEFAULT # no hago nada
+        else [node]
+
 jsinliner.inline = (code) ->
     {children: [statements...]} = node = narcissus.parser.parse code
-    console.log statements[0]
+    narcissus.decompiler.pp (trans node)[0]
+    #expression.children[1].children[0].children[1].children
     #print statements[1]
-    #print node , 0
-

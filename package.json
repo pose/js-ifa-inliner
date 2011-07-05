@@ -7,7 +7,8 @@
   "dependencies": {
     "coffee-script": ">= 1.0.1", 
     "nodeunit": "0.5.1",
-    "narcissus": ">= 0.0.1"
+    "narcissus": ">= 0.0.1",
+    "set": ">= 1.0.0"
     },
   "keywords": ["information flow", "inlining", "inliner", "ifa", "coffeescript"],
   "bin": "./bin/jsinliner",
